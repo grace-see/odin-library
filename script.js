@@ -1,4 +1,7 @@
 const myLibrary = [];
+const dialog = document.querySelector("dialog");
+const newButton = document.querySelector("#newButton");
+const submitButton = document.querySelector("#submitButton");
 
 myLibrary.push(new Book("Frankenstein", "Mary Shelley", 288, true));
 myLibrary.push(new Book("A Clockwork Orange", "Anthony Burgess", 228, true));
@@ -18,20 +21,32 @@ function addBookToLibrary(title, author, pages, beenRead) {
     myLibrary.push(new Book(title, author, pages, beenRead));
 }
 
+function createBook() {
+
+}
+
 function displayBooks() {
     container = document.querySelector("#container");
     for (let i = 0; i < myLibrary.length; i++) {
         //add a book card :)
-        bookCard = document.createElement("div");
+        const bookCard = document.createElement("div");
         bookCard.classList.add("bookCard");
-        title = document.createElement("h2");
-        title.textContent = myLibrary[i].title;
-        information = document.createElement("p");
+        const bookTitle = document.createElement("h2");
+        bookTitle.textContent = myLibrary[i].title;
+        const information = document.createElement("p");
         information.textContent = myLibrary[i].author + ", " + myLibrary[i].pages + " pages\nHas been read? " + myLibrary[i].beenRead + "\nID: " + myLibrary[i].id;
-        bookCard.appendChild(title);
+        bookCard.appendChild(bookTitle);
         bookCard.appendChild(information);
         container.appendChild(bookCard);
     }
 }
 
 displayBooks();
+
+newButton.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+submitButton.addEventListener("click", () => {
+    dialog.close();
+});
